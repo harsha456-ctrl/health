@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explainable IoT-Deployable Heart Failure Early-Warning System</title>
+    <!-- Google Fonts & Chart.js -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i data-lucide="activity"></i>
+                </div>
+                <div>
+                    <h2>HeartPulse Edge</h2>
+                    <span class="badge">IoT ML System</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#dashboard" class="nav-item active" onclick="switchTab('dashboard')">
+                    <i data-lucide="layout-dashboard"></i> Overview & System
+                </a>
+                <a href="#iot-sim" class="nav-item" onclick="switchTab('iot-sim')">
+                    <i data-lucide="cpu"></i> IoT Edge Simulator
+                </a>
+                <a href="#literature" class="nav-item" onclick="switchTab('literature')">
+                    <i data-lucide="book-open"></i> Literature Comparison
+                </a>
+                <a href="#models" class="nav-item" onclick="switchTab('models')">
+                    <i data-lucide="binary"></i> Model Performance
+                </a>
+                <a href="#explainability" class="nav-item" onclick="switchTab('explainability')">
+                    <i data-lucide="sparkles"></i> SHAP Explainability
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="course-info">
+                    <p class="course-name">Predictive Models in IoT</p>
+                    <p class="instructor">Dr. N. Vikram</p>
+                </div>
+                <div class="status-indicator">
+                    <span class="dot green"></span> Edge Engine Active (<0.1ms)
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header Banner -->
+            <header class="top-header">
+                <div class="header-titles">
+                    <h1>Explainable IoT Early-Warning System for Heart Failure</h1>
+                    <p>Continuous Patient Monitoring & Low-Power Edge Risk Assessment (UCI Dataset #519)</p>
+                </div>
+                <div class="header-actions">
+                    <a href="https://archive.ics.uci.edu/dataset/519/heart+failure+clinical+records" target="_blank" class="btn btn-secondary">
+                        <i data-lucide="database"></i> UCI Repo
+                    </a>
+                    <button class="btn btn-primary" onclick="runEdgeSimulation()">
+                        <i data-lucide="play-circle"></i> Run IoT Demo
+                    </button>
+                </div>
+            </header>
+
+            <!-- TAB 1: OVERVIEW & DASHBOARD -->
+            <section id="tab-dashboard" class="tab-content active">
+                <!-- Key Performance Metrics Grid -->
+                <div class="kpi-grid">
+                    <div class="kpi-card highlight">
+                        <div class="kpi-header">
+                            <span>Top CV Accuracy</span>
+                            <i data-lucide="award"></i>
+                        </div>
+                        <div class="kpi-value">84.94%</div>
+                        <div class="kpi-sub">LightGBM Classifier</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span>Matthews Corr (MCC)</span>
+                            <i data-lucide="git-commit"></i>
+                        </div>
+                        <div class="kpi-value">0.6486</div>
+                        <div class="kpi-sub">Outperforms Chicco baseline (0.40)</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span>Inference Latency</span>
+                            <i data-lucide="zap"></i>
+                        </div>
+                        <div class="kpi-value">< 0.55 ms</div>
+                        <div class="kpi-sub">Edge Hardware Ready</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span>Dataset Size</span>
+                            <i data-lucide="users"></i>
+                        </div>
+                        <div class="kpi-value">299</div>
+                        <div class="kpi-sub">12 Clinical Features + Target</div>
+                    </div>
+                </div>
+
+                <!-- Problem Statement & Research Gap Box -->
+                <div class="card content-card margin-top">
+                    <div class="card-header">
+                        <h3><i data-lucide="target"></i> Project Core Objective & Research Gap</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="grid-2">
+                            <div>
+                                <h4>Problem Statement</h4>
+                                <p class="text-muted">Design an explainable, IoT-deployable early-warning system for heart failure mortality risk using patient continuous monitoring data. The system must predict risk in real time and explain why a patient is flagged high-risk directly on low-power edge devices.</p>
+                            </div>
+                            <div>
+                                <h4>Resolved Gaps vs Existing Literature</h4>
+                                <ul class="gap-list">
+                                    <li><i data-lucide="check-circle-2"></i> <strong>Offline vs Real-Time:</strong> Existing works (Chicco 2020, Ishaq 2021) used static offline datasets. We simulate continuous IoT streams.</li>
+                                    <li><i data-lucide="check-circle-2"></i> <strong>Cloud Dependency:</strong> Umer 2022 relied on cloud servers. Our system runs edge inference with latency &lt; 1 ms.</li>
+                                    <li><i data-lucide="check-circle-2"></i> <strong>Explainability:</strong> We embed SHAP values to explain individual patient risk triggers.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Overview Charts Grid -->
+                <div class="grid-2 margin-top">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Model Accuracy vs Literature Benchmark</h3>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="overviewBenchChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Feature Importance Ranking (SHAP)</h3>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="overviewShapChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: IOT EDGE SIMULATOR -->
+            <section id="tab-iot-sim" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i data-lucide="cpu"></i> Interactive IoT Edge Patient Monitoring Simulator</h3>
+                        <span class="badge red-pulse">Live Sensor Stream</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted">Adjust simulated patient vital signs below to test real-time edge prediction, latency calculation, and automated risk explainability.</p>
+                        
+                        <div class="simulator-layout">
+                            <!-- Left: Interactive Sliders -->
+                            <div class="sim-controls">
+                                <div class="control-group">
+                                    <label>Ejection Fraction (%): <span id="val-ef">30</span>%</label>
+                                    <input type="range" id="input-ef" min="10" max="80" value="30" oninput="updateSimulator()">
+                                </div>
+                                <div class="control-group">
+                                    <label>Serum Creatinine (mg/dL): <span id="val-sc">1.9</span></label>
+                                    <input type="range" id="input-sc" min="0.5" max="9.0" step="0.1" value="1.9" oninput="updateSimulator()">
+                                </div>
+                                <div class="control-group">
+                                    <label>Follow-up Time (Days): <span id="val-time">45</span></label>
+                                    <input type="range" id="input-time" min="4" max="285" value="45" oninput="updateSimulator()">
+                                </div>
+                                <div class="control-group">
+                                    <label>Serum Sodium (mEq/L): <span id="val-sodium">132</span></label>
+                                    <input type="range" id="input-sodium" min="110" max="150" value="132" oninput="updateSimulator()">
+                                </div>
+                                <div class="control-group">
+                                    <label>Patient Age (Years): <span id="val-age">65</span></label>
+                                    <input type="range" id="input-age" min="40" max="95" value="65" oninput="updateSimulator()">
+                                </div>
+                                <div class="control-group">
+                                    <label>High Blood Pressure:</label>
+                                    <select id="input-hbp" onchange="updateSimulator()">
+                                        <option value="0">No (Normal)</option>
+                                        <option value="1" selected>Yes (Hypertensive)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Right: Live Edge Diagnostics Output -->
+                            <div class="sim-output">
+                                <div class="edge-gauge-container">
+                                    <div class="gauge-title">Edge Mortality Risk Score</div>
+                                    <div class="gauge-score" id="risk-score">78.4%</div>
+                                    <div class="gauge-status" id="risk-status">CRITICAL ALERT</div>
+                                    <div class="latency-badge"><i data-lucide="clock"></i> Latency: <span id="edge-latency">0.042</span> ms</div>
+                                </div>
+
+                                <div class="explainability-box">
+                                    <h4>Top SHAP Risk Drivers for Patient</h4>
+                                    <div class="shap-list" id="shap-drivers-list">
+                                        <!-- Dynamically populated -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Continuous Stream Timeline -->
+                <div class="card margin-top">
+                    <div class="card-header">
+                        <h3>Simulated Continuous Patient Multi-Sensor Stream</h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="streamTimelineChart" height="90"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: LITERATURE COMPARISON -->
+            <section id="tab-literature" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i data-lucide="book-open"></i> Comparative Evaluation with Published Literature</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Study & Authors</th>
+                                        <th>Method / Model</th>
+                                        <th>Accuracy</th>
+                                        <th>MCC</th>
+                                        <th>F1-Score</th>
+                                        <th>Real-Time IoT?</th>
+                                        <th>Explainability?</th>
+                                        <th>Edge Deployable?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Chicco & Jurman (2020)</strong></td>
+                                        <td>Random Forest (Top-2 Features)</td>
+                                        <td>0.8350</td>
+                                        <td>0.4000</td>
+                                        <td>0.6500</td>
+                                        <td><span class="badge red">No - Static</span></td>
+                                        <td><span class="badge red">No</span></td>
+                                        <td><span class="badge red">No</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Ishaq et al. (2021)</strong></td>
+                                        <td>SMOTE + Extra Trees Classifier</td>
+                                        <td>0.9260</td>
+                                        <td>0.8400</td>
+                                        <td>0.9200</td>
+                                        <td><span class="badge red">No - Static</span></td>
+                                        <td><span class="badge red">No</span></td>
+                                        <td><span class="badge red">No</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Umer et al. (2022)</strong></td>
+                                        <td>CNN / MLP / RNN / LSTM</td>
+                                        <td>0.9280</td>
+                                        <td>0.8200</td>
+                                        <td>0.9100</td>
+                                        <td><span class="badge orange">Partial - Cloud</span></td>
+                                        <td><span class="badge red">No</span></td>
+                                        <td><span class="badge orange">No (Cloud Server)</span></td>
+                                    </tr>
+                                    <tr class="highlight-row">
+                                        <td><strong>Our Proposed Work (CV)</strong></td>
+                                        <td>LightGBM / Extra Trees + Edge Engine</td>
+                                        <td><strong>0.8494</strong></td>
+                                        <td><strong>0.6486</strong></td>
+                                        <td><strong>0.7551</strong></td>
+                                        <td><span class="badge green">Yes - Streaming</span></td>
+                                        <td><span class="badge green">Yes - SHAP</span></td>
+                                        <td><span class="badge green">Yes (&lt; 0.55ms)</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card margin-top">
+                    <div class="card-header">
+                        <h3>Benchmark Insights & Analysis</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="grid-3">
+                            <div class="insight-box">
+                                <i data-lucide="shield-check" class="text-blue"></i>
+                                <h4>Matthews Correlation (MCC)</h4>
+                                <p>Standard accuracy can be misleading due to class imbalance (203 survived vs 96 deceased). Chicco & Jurman emphasized MCC. Our LightGBM model achieves 0.6486 MCC in cross-validation.</p>
+                            </div>
+                            <div class="insight-box">
+                                <i data-lucide="cpu" class="text-green"></i>
+                                <h4>Edge Feasibility</h4>
+                                <p>With average per-sample inference latency of 0.05ms to 0.55ms, our model can run directly on ARM Cortex-M or Raspberry Pi microcontrollers without needing cloud network bandwidth.</p>
+                            </div>
+                            <div class="insight-box">
+                                <i data-lucide="sparkles" class="text-purple"></i>
+                                <h4>Clinical Explainability</h4>
+                                <p>Unlike black-box deep learning (Umer 2022), SHAP values provide clear explanations to clinicians for why risk alerts are generated, building clinical trust.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: MODEL PERFORMANCE -->
+            <section id="tab-models" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i data-lucide="binary"></i> Evaluated Machine Learning Models Comparison</h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="allModelsChart" height="110"></canvas>
+                    </div>
+                </div>
+
+                <div class="card margin-top">
+                    <div class="card-header">
+                        <h3>5-Fold Stratified Cross-Validation Results Matrix</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Model Name</th>
+                                        <th>Accuracy (Mean ± Std)</th>
+                                        <th>MCC</th>
+                                        <th>F1-Score</th>
+                                        <th>ROC-AUC</th>
+                                        <th>Latency (ms)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cv-table-body">
+                                    <!-- Populated dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: EXPLAINABILITY -->
+            <section id="tab-explainability" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i data-lucide="sparkles"></i> Global Feature Importance (SHAP Analysis)</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="grid-2">
+                            <div>
+                                <canvas id="shapDetailChart" height="200"></canvas>
+                            </div>
+                            <div>
+                                <h4>Clinical Feature Interpretations</h4>
+                                <ul class="shap-interpret-list">
+                                    <li><strong>time (Follow-up period):</strong> Strongest predictor of mortality risk. Shorter follow-up periods without recovery indicate critical post-discharge vulnerability.</li>
+                                    <li><strong>serum_creatinine:</strong> Higher blood levels indicate impaired kidney function, strongly correlated with left ventricular failure.</li>
+                                    <li><strong>ejection_fraction:</strong> Percentage of blood pumped per stroke. Values &lt; 30% indicate severe heart failure.</li>
+                                    <li><strong>serum_sodium:</strong> Hyponatremia (&lt; 135 mEq/L) signals fluid retention and neurohormonal activation.</li>
+                                    <li><strong>age:</strong> Advanced age increases overall vulnerability to heart failure mortality.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

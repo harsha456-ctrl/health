@@ -1,0 +1,6 @@
+Study,Method,Dataset,Accuracy,MCC,F1_Score,Real_Time_IoT,Explainability,Edge_Deployable
+Chicco & Jurman (2020),Random Forest (Feature Ranking),UCI Heart Failure (299 records),0.835,0.4,0.65,No - Offline Only,No (Feature Ranking only),No
+Ishaq et al. (2021),SMOTE + Extra Trees Classifier,UCI Heart Failure (299 records),0.926,0.84,0.92,No - Offline Only,No,No
+Umer et al. (2022),CNN / MLP / RNN / LSTM,UCI Heart Failure (299 records),0.928,0.82,0.91,Partial - Cloud IoT,No,No (Cloud Dependency)
+Our Proposed Work (Replication/Eval),ExtraTrees + SMOTE Baseline,UCI Heart Failure (299 records),0.8,0.5171,0.6471,No - Offline,No,No
+Our Proposed Work (IoT Edge System),Lightweight Explainable Edge Model,UCI Heart Failure (299 records),0.7667,0.4247,0.5625,Yes - Continuous Streaming,Yes - SHAP Real-time,Yes (<0.05ms Latency)

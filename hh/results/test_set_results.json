@@ -1,0 +1,218 @@
+{
+    "Logistic Regression": {
+        "accuracy": 0.8167,
+        "precision": 0.7857,
+        "recall_sensitivity": 0.5789,
+        "specificity": 0.9268,
+        "f1_score": 0.6667,
+        "mcc": 0.5563,
+        "roc_auc": 0.8588,
+        "latency_per_sample_ms": 0.11941,
+        "confusion_matrix": [
+            [
+                38,
+                3
+            ],
+            [
+                8,
+                11
+            ]
+        ],
+        "tp": 11,
+        "fp": 3,
+        "tn": 38,
+        "fn": 8
+    },
+    "Random Forest (Chicco & Jurman 2020)": {
+        "accuracy": 0.85,
+        "precision": 0.8571,
+        "recall_sensitivity": 0.6316,
+        "specificity": 0.9512,
+        "f1_score": 0.7273,
+        "mcc": 0.641,
+        "roc_auc": 0.9012,
+        "latency_per_sample_ms": 0.75472,
+        "confusion_matrix": [
+            [
+                39,
+                2
+            ],
+            [
+                7,
+                12
+            ]
+        ],
+        "tp": 12,
+        "fp": 2,
+        "tn": 39,
+        "fn": 7
+    },
+    "RF Top-2 Features (Chicco & Jurman)": {
+        "accuracy": 0.75,
+        "precision": 0.6667,
+        "recall_sensitivity": 0.4211,
+        "specificity": 0.9024,
+        "f1_score": 0.5161,
+        "mcc": 0.3762,
+        "roc_auc": 0.7407,
+        "latency_per_sample_ms": 5.02625,
+        "confusion_matrix": [
+            [
+                37,
+                4
+            ],
+            [
+                11,
+                8
+            ]
+        ],
+        "tp": 8,
+        "fp": 4,
+        "tn": 37,
+        "fn": 11
+    },
+    "Extra Trees (Ishaq et al. 2021)": {
+        "accuracy": 0.7333,
+        "precision": 0.6364,
+        "recall_sensitivity": 0.3684,
+        "specificity": 0.9024,
+        "f1_score": 0.4667,
+        "mcc": 0.3256,
+        "roc_auc": 0.8357,
+        "latency_per_sample_ms": 0.98687,
+        "confusion_matrix": [
+            [
+                37,
+                4
+            ],
+            [
+                12,
+                7
+            ]
+        ],
+        "tp": 7,
+        "fp": 4,
+        "tn": 37,
+        "fn": 12
+    },
+    "Extra Trees + SMOTE (Ishaq et al. 2021)": {
+        "accuracy": 0.8,
+        "precision": 0.7333,
+        "recall_sensitivity": 0.5789,
+        "specificity": 0.9024,
+        "f1_score": 0.6471,
+        "mcc": 0.5171,
+        "roc_auc": 0.8588,
+        "latency_per_sample_ms": 1.69601,
+        "confusion_matrix": [
+            [
+                37,
+                4
+            ],
+            [
+                8,
+                11
+            ]
+        ],
+        "tp": 11,
+        "fp": 4,
+        "tn": 37,
+        "fn": 8
+    },
+    "XGBoost Classifier": {
+        "accuracy": 0.85,
+        "precision": 0.8571,
+        "recall_sensitivity": 0.6316,
+        "specificity": 0.9512,
+        "f1_score": 0.7273,
+        "mcc": 0.641,
+        "roc_auc": 0.8511,
+        "latency_per_sample_ms": 0.55413,
+        "confusion_matrix": [
+            [
+                39,
+                2
+            ],
+            [
+                7,
+                12
+            ]
+        ],
+        "tp": 12,
+        "fp": 2,
+        "tn": 39,
+        "fn": 7
+    },
+    "LightGBM Classifier": {
+        "accuracy": 0.8167,
+        "precision": 0.7857,
+        "recall_sensitivity": 0.5789,
+        "specificity": 0.9268,
+        "f1_score": 0.6667,
+        "mcc": 0.5563,
+        "roc_auc": 0.8447,
+        "latency_per_sample_ms": 0.16761,
+        "confusion_matrix": [
+            [
+                38,
+                3
+            ],
+            [
+                8,
+                11
+            ]
+        ],
+        "tp": 11,
+        "fp": 3,
+        "tn": 38,
+        "fn": 8
+    },
+    "MLP Neural Net (Umer et al. 2022)": {
+        "accuracy": 0.75,
+        "precision": 0.6429,
+        "recall_sensitivity": 0.4737,
+        "specificity": 0.878,
+        "f1_score": 0.5455,
+        "mcc": 0.3868,
+        "roc_auc": 0.7458,
+        "latency_per_sample_ms": 0.08941,
+        "confusion_matrix": [
+            [
+                36,
+                5
+            ],
+            [
+                10,
+                9
+            ]
+        ],
+        "tp": 9,
+        "fp": 5,
+        "tn": 36,
+        "fn": 10
+    },
+    "Proposed IoT Edge Lightweight Model": {
+        "accuracy": 0.7667,
+        "precision": 0.6923,
+        "recall_sensitivity": 0.4737,
+        "specificity": 0.9024,
+        "f1_score": 0.5625,
+        "mcc": 0.4247,
+        "roc_auc": 0.8434,
+        "latency_per_sample_ms": 0.67013,
+        "confusion_matrix": [
+            [
+                37,
+                4
+            ],
+            [
+                10,
+                9
+            ]
+        ],
+        "tp": 9,
+        "fp": 4,
+        "tn": 37,
+        "fn": 10
+    }
+}
